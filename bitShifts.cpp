@@ -12,30 +12,28 @@
 
 int main ()
 {
-  const int32_t myInt = 0xFFFFFFFF;
+  const int32_t myInt = 0xFFF1FFF1;
   float myFloat = 0;
 
-  question("Does masking the lower 16 bits of (2^31)-1 == (2^16) - 1?")
-  assert ((myInt & 0xFFFF) == 0xFFFF)
+  question("Does masking the lower 16 bits make 0xFFF1?")
+  assert ((myInt & 0xFFFF) == 0xFFF1)
 
   question("Well, is it the same after a static cast to float?")
-  myFloat = static_cast<float>(myInt & 0xFFFF);
-  assert ((myFloat == 0xFFFF))
+  myFloat = static_cast<float>(myInt & 0xFFF1);
+  assert ((myFloat == 0xFFF1))
 
   question("Can I shift the upper 16 bits down?")
-  assert ((myInt >> 16) == 0xFFFF)
+  assert ((myInt >> 16) == 0xFFF1)
 
   question("And can I cast that to a float?")
   myFloat = static_cast<float>(myInt >> 16);
-  assert ((myFloat == 0xFFFF))
+  assert ((myFloat == 0xFFF1))
 
   question("Well, what the hell is it when shifted down?")
-  std::cout << static_cast<float>(myInt >> 16) << std::endl;
+  std::cout << std::hex << (myInt >> 16) << std::endl;
 
   question("I'm done.")
   assert (true);
-
-  std::cout << hex << static_cast<float>(0x0000FFFF) << std::endl;
 
   return 0;
 }
