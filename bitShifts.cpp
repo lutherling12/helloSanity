@@ -10,7 +10,7 @@
   yn ? std::cout << "Yes" << std::endl \
      : std::cout << "No" << std::endl; 
 
-int main (int argc, char* argv[])
+int main ()
 {
   const int32_t myInt = 0xFFFFFFFF;
   float myFloat = 0;
