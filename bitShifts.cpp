@@ -22,7 +22,7 @@ int main ()
   myFloat = static_cast<float>(myInt & 0xFFFF);
   assert ((myFloat == 0xFFFF))
 
-  question("Can I shift the lower 16 bits down?")
+  question("Can I shift the upper 16 bits down?")
   assert ((myInt >> 16) == 0xFFFF)
 
   question("And can I cast that to a float?")
@@ -34,6 +34,8 @@ int main ()
 
   question("I'm done.")
   assert (true);
+
+  std::cout << hex << static_cast<float>(0x0000FFFF) << std::endl;
 
   return 0;
 }
