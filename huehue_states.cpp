@@ -60,8 +60,9 @@ class compare : public parsifier_state<keyT, keysV, keysL> {
   public:
   compare(){std::cout << "compare state" << std::endl;}
   ~compare(){}
-  void next (parsifier_context<keyT, keysV, keysL> context) {
-    if (is_match(*context.key, context.vec->front()))
+
+  void next (parsifier_context<keyT, keysV, keysL>& context) {
+    if (!is_match(*context.key, context.vec->front()))
       context.set_state(new enqueue<keyT, keysV, keysL>());
     else
       context.set_state(new discard<keyT, keysV, keysL>());
