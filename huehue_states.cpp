@@ -51,7 +51,7 @@ class parsifier_context
 template<typename keyT, typename keysV, typename keysL>
 class parsifier_state {
   public:
-  virtual void next (parsifier_context<keyT, keysV, keysL>) = 0;
+  virtual void next (parsifier_context<keyT, keysV, keysL>&) = 0;
   virtual ~parsifier_state(){};
 };
 
@@ -78,7 +78,7 @@ class enqueue : public parsifier_state<keyT, keysV, keysL> {
   public:
   enqueue() {std::cout << "enqueue state" << std::endl;}
   ~enqueue(){};
-  void next (parsifier_context<keyT, keysV, keysL> context) {
+  void next (parsifier_context<keyT, keysV, keysL>& context) {
     if (context.vec->size() >= 1);
     // context.que->insert(context.que->end(), context.vec->begin(), context.vec->begin()+1);
       context.que->insert(context.que->end(), context.vec->front());
@@ -90,8 +90,8 @@ template<typename keyT, typename keysV, typename keysL>
 class discard : public parsifier_state<keyT, keysV, keysL> {
   public:
   discard() {std::cout << "discard state" << std::endl;}
-  ~discard(){}
-  void next (parsifier_context<keyT, keysV, keysL> context) {
+  ~discard(){};
+  void next (parsifier_context<keyT, keysV, keysL>& context) {
     if (context.vec->size() >= 1)
       context.vec->erase(context.vec->begin(), context.vec->begin()+1);
     context.set_state(new compare<keyT, keysV, keysL>());
