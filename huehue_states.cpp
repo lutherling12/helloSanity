@@ -32,9 +32,8 @@ class parsifier_context
   };
 
   void set_state (parsifier_state<keyT, keysV, keysL>* s) {
-    if (current != nullptr) {
+    if (current != nullptr)
       delete current;
-    }
     current = s;
   };
 
@@ -115,10 +114,12 @@ int main(int argc, char* argv[])
     {"hue", "hue", "hue", "mordekaiser", "is", "numero", "uno"};
   std::list<std::string> filtered;
 
-  // parsifier_context<decltype(hue), decltype(sentence), decltype(filter)> no_laughing (&hue, &sentence, &filter);
+  parsifier_context<
+    decltype(hue),
+    decltype(sentence),
+    decltype(filtered)
+  > no_laughing (&hue, &sentence, &filtered);
   // parsifier_context no_laughing (&hue, &sentence, &filter);
-  parsifier_context<std::string, std::vector<std::string>, std::list<std::string>> no_laughing (&hue, &sentence, &filtered);
-
 
   while (sentence.size() > 0)
     no_laughing.next();
