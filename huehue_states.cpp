@@ -26,7 +26,10 @@ class parsifier_context
   parsifier_state<keyT, keysV, keysL>* current;
 
   parsifier_context (keyT* k, keysV* v, keysL* q);
-  ~parsifier_context(){};
+  ~parsifier_context(){
+    delete current;
+    std::cout << "hasta luego" << std::endl;
+  };
 
   void set_state (parsifier_state<keyT, keysV, keysL>* s) {
     if (current != nullptr) {
