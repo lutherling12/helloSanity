@@ -1,2 +1,2 @@
-# Hashtag sanity checks 
-Alexa, remind me that I've overlooked something.
+# Hashtag sanity checks
+Here to remind me of failures when even "hello world" stops working.
